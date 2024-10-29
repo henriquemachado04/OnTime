@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View, FlatList, StyleSheet } from 'react-native';
+import Card from './components/card';
+import Rodape from './components/Footer';
+import { MERCADOS } from './data/mercados';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={estilos.container}>
+      <FlatList
+        data={MERCADOS}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <Card mercado={item} />}
+        contentContainerStyle={estilos.lista}
+      />
+      <Rodape />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const estilos = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#FFF',
+  },
+  lista: {
+    paddingHorizontal: 10,
   },
 });
